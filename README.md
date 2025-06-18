@@ -96,3 +96,40 @@ jobs:
         version_label: ${{ github.sha }}
         deployment_package: deploy/application.jar
 ```
+
+Bagian yang harus kamu UBAH:
+
+## application_name
+Ganti dengan nama aplikasi di Elastic Beanstalk
+Contoh:
+
+```yaml
+application_name: 'my-springboot-app'
+```
+## environment_name
+Ganti dengan nama environment di Elastic Beanstalk
+Contoh:
+
+```yaml
+environment_name: 'my-springboot-app-env'
+```
+## region
+Ganti sesuai region AWS tempat aplikasi kamu berada
+Contoh region:
+```bash
+ap-southeast-1 (Singapore)
+us-east-1 (N. Virginia)
+ap-northeast-1 (Tokyo)
+```
+
+## AWS Secrets
+Pastikan kamu sudah menyimpan AWS_ACCESS_KEY_ID dan AWS_SECRET_ACCESS_KEY di GitHub repo kamu
+`(Settings > Secrets > Actions)`
+
+Penjelasan Step Lainnya:
+- Checkout source code: Mengambil kode dari repo.
+- Set up JDK 17: Menyiapkan Java 17.
+- Build with Maven: Build project jadi file JAR.
+- Prepare deployment package: Menyalin file hasil build ke folder deploy.
+- Deploy to Elastic Beanstalk: Upload dan deploy file JAR ke AWS Beanstalk.
+- Jika belum tahu nama application/environment, cek di AWS Elastic Beanstalk Console.
