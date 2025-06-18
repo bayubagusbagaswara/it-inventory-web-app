@@ -1,3 +1,4 @@
+```bash
 nama-project/
 ├── .github/
 │   └── workflows/
@@ -25,3 +26,30 @@ nama-project/
 │                       └── ...                        <-- Test class
 ├── pom.xml      <-- Konfigurasi Maven (atau build.gradle jika pakai Gradle)
 └── README.md    <-- Dokumentasi
+```
+
+# Contoh Lebih Spesifik
+
+```bash
+my-springboot-app/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/bayu/myapp/
+│   │   │       ├── MyAppApplication.java
+│   │   │       ├── controller/
+│   │   │       ├── service/
+│   │   │       ├── repository/
+│   │   │       └── model/
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/
+│       └── java/
+│           └── com/bayu/myapp/
+│               └── ...
+├── pom.xml
+└── README.md
+```
