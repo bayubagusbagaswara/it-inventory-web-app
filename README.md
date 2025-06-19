@@ -133,3 +133,46 @@ Penjelasan Step Lainnya:
 - Prepare deployment package: Menyalin file hasil build ke folder deploy.
 - Deploy to Elastic Beanstalk: Upload dan deploy file JAR ke AWS Beanstalk.
 - Jika belum tahu nama application/environment, cek di AWS Elastic Beanstalk Console.
+
+# Belum Pernah Menggunakan AWS dan Belum Punya Akun AWS
+## Daftar Akun AWS
+1. Kunjungi https://aws.amazon.com/
+2. Klik Create an AWS Account
+3. Isi data diri, email, dan password
+4. Pilih Akun Personal (bukan bisnis), jika hanya untuk belajar/pribadi.
+5. Masukkan detail kartu kredit/debit (AWS butuh ini untuk verifikasi, tapi ada free tier/kuota gratis untuk pemula).
+6. Ikuti proses verifikasi telepon (masukkan kode OTP).
+7. Selesai! Login ke AWS Management Console.
+
+## Aktifkan Free Tier dan Pahami Batasannya
+- AWS Free Tier memberikan kuota gratis untuk banyak layanan (EC2, S3, RDS, Beanstalk, dsb) selama 12 bulan setelah pendaftaran.
+- Pastikan tidak memakai resource melebihi batas gratis jika tidak ingin kena biaya.
+
+## Buat IAM User untuk Otomasi (CI/CD)
+1. Di AWS Console, cari dan buka IAM.
+2. Pilih Users → Add users.
+3. Masukkan username (misal: github-actions-deploy).
+4. Centang Programmatic access.
+5. Klik Next dan pilih Attach existing policies directly.
+6. Cari dan centang:
+  - AWSElasticBeanstalkFullAccess
+  - (tambahan: AmazonS3FullAccess jika butuh)
+7. Selesaikan proses, dan download/catat Access Key ID & Secret Access Key.
+
+## Masukkan Access Key ke GitHub Repo
+- Di repo GitHub → Settings → Secrets and variables → Actions
+- Tambahkan secrets:
+    - `AWS_ACCESS_KEY_ID`
+    - `AWS_SECRET_ACCESS_KEY`
+ 
+## Buat Environment AWS Elastic Beanstalk
+1. Di AWS Console → cari dan buka Elastic Beanstalk.
+2. Klik Create Application.
+3. Isi nama aplikasi, pilih platform Java.
+4. Ikuti wizard sampai environment selesai terbuat.
+5. Catat Application Name dan Environment Name
+
+## Setup GitHub Actions di Repo Spring Boot
+Buat file .github/workflows/deploy.yml
+(isi contoh sudah saya berikan di atas).
+Pastikan application_name, environment_name, region sudah sesuai dengan yang kamu buat di Beanstalk.
